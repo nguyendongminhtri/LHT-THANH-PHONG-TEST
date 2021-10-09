@@ -35,6 +35,10 @@ import {environment} from '../environments/environment.prod';
 import { UploadAvatarComponent } from './upload/upload-avatar/upload-avatar.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ChangeAvatarComponent } from './manage-profile/change-avatar/change-avatar.component';
+import { CreateCategoryComponent } from './content/categoryManage/create-category/create-category.component';
+import { PageCategoryComponent } from './content/categoryManage/page-category/page-category.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 
 
 export const appRoutes: Routes = [
@@ -44,6 +48,8 @@ export const appRoutes: Routes = [
     {path: 'user-account', component: UserAccountComponent, data: {title: 'User-Account'}},
     {path: 'change-password', component: ChangePasswordComponent, data: {title: 'Change-Password'}},
     { path: 'change-avatar', component: ChangeAvatarComponent, data: {title: 'Change-Avatar'}},
+    { path: 'create-category', component: CreateCategoryComponent, data: {title: 'Create-Category'}},
+    {path: 'page-category', component: PageCategoryComponent, data: {title: 'Page-Category'}},
     {
         path: 'guide/getting-started',
         component: GettingStartedComponent,
@@ -52,7 +58,7 @@ export const appRoutes: Routes = [
 ];
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, ChangeAvatarComponent],
+    declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, ChangeAvatarComponent, CreateCategoryComponent, PageCategoryComponent],
     imports: [
         HttpClientModule,
         BrowserModule,
@@ -70,7 +76,7 @@ export const appRoutes: Routes = [
         NgxAudioPlayerModule,
         AngularFireStorageModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
-        RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, ReactiveFormsModule, MatProgressSpinnerModule
+        RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, ReactiveFormsModule, MatProgressSpinnerModule, MatPaginatorModule, Ng2SearchPipeModule
     ],
     providers: [httpInterceptorProviders],
     bootstrap: [AppComponent]
