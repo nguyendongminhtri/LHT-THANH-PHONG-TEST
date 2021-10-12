@@ -17,4 +17,12 @@ export class CategoryService {
     const params = request;
     return this.http.get(this.API_CATEGORY, {params});
   }
+  searchCategory(request, search){
+    const params = request;
+    const nameCategory = search;
+    return this.http.get(this.API_CATEGORY+'/search/'+nameCategory, {params})
+  }
+  getListCategory(): Observable<Category[]>{
+    return this.http.get<Category[]>(this.API_CATEGORY+'/list')
+  }
 }

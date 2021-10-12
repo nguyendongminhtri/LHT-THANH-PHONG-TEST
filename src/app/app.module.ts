@@ -39,6 +39,11 @@ import { CreateCategoryComponent } from './content/categoryManage/create-categor
 import { PageCategoryComponent } from './content/categoryManage/page-category/page-category.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import { CreateSongComponent } from './content/songManage/create-song/create-song.component';
+import { PageSongComponent } from './content/songManage/page-song/page-song.component';
+import { UploadFileComponent } from './upload/upload-file/upload-file.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatSelectModule} from '@angular/material/select';
 
 
 export const appRoutes: Routes = [
@@ -47,9 +52,10 @@ export const appRoutes: Routes = [
     {path: 'login', component: LoginComponent, data: {title: 'Login'}},
     {path: 'user-account', component: UserAccountComponent, data: {title: 'User-Account'}},
     {path: 'change-password', component: ChangePasswordComponent, data: {title: 'Change-Password'}},
-    { path: 'change-avatar', component: ChangeAvatarComponent, data: {title: 'Change-Avatar'}},
-    { path: 'create-category', component: CreateCategoryComponent, data: {title: 'Create-Category'}},
+    {path: 'change-avatar', component: ChangeAvatarComponent, data: {title: 'Change-Avatar'}},
+    {path: 'create-category', component: CreateCategoryComponent, data: {title: 'Create-Category'}},
     {path: 'page-category', component: PageCategoryComponent, data: {title: 'Page-Category'}},
+    {path: 'create-song', component: CreateSongComponent, data: {title: 'Create-Song'}},
     {
         path: 'guide/getting-started',
         component: GettingStartedComponent,
@@ -58,7 +64,7 @@ export const appRoutes: Routes = [
 ];
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, ChangeAvatarComponent, CreateCategoryComponent, PageCategoryComponent],
+    declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, ChangeAvatarComponent, CreateCategoryComponent, PageCategoryComponent, CreateSongComponent, PageSongComponent, UploadFileComponent],
     imports: [
         HttpClientModule,
         BrowserModule,
@@ -76,7 +82,7 @@ export const appRoutes: Routes = [
         NgxAudioPlayerModule,
         AngularFireStorageModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
-        RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, ReactiveFormsModule, MatProgressSpinnerModule, MatPaginatorModule, Ng2SearchPipeModule
+        RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, ReactiveFormsModule, MatProgressSpinnerModule, MatPaginatorModule, Ng2SearchPipeModule, MatProgressBarModule, MatSelectModule
     ],
     providers: [httpInterceptorProviders],
     bootstrap: [AppComponent]
