@@ -11,7 +11,7 @@ import {PageEvent} from '@angular/material/paginator';
 export class PageCategoryComponent implements OnInit {
   totalElements: number = 0;
   categorys: Category[];
-  loading: boolean;
+  // loading: boolean;
   searchText;
   constructor(private categoryService: CategoryService) { }
 
@@ -19,16 +19,18 @@ export class PageCategoryComponent implements OnInit {
     this.getListResquest({page: '', size: 3});
   }
   private getListResquest(request) {
-    this.loading = true;
+    // this.loading = true;
     this.categoryService.getPageCategory(request)
       .subscribe(data => {
         this.categorys = data['content'];
         console.log('category', data);
         this.totalElements = data['totalElements'];
-        this.loading = false;
-      }, error => {
-        this.loading = false;
-      });
+        // this.loading = false;
+      }
+      // , error => {
+      //   // this.loading = false;
+      // }
+      );
   }
 
   nextPage(event: PageEvent) {

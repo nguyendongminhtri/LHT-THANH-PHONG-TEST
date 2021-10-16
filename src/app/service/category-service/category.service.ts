@@ -25,4 +25,10 @@ export class CategoryService {
   getListCategory(): Observable<Category[]>{
     return this.http.get<Category[]>(this.API_CATEGORY+'/list')
   }
+  updateCategory(id: number, category: Category): Observable<Category>{
+    return this.http.put<Category>(`${this.API_CATEGORY}/${id}`, category)
+  }
+  getCategoryById(id: number): Observable<Category> {
+    return this.http.get<Category>(`${this.API_CATEGORY}/${id}`);
+  }
 }

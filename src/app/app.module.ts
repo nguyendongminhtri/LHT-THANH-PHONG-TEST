@@ -44,6 +44,7 @@ import { PageSongComponent } from './content/songManage/page-song/page-song.comp
 import { UploadFileComponent } from './upload/upload-file/upload-file.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSelectModule} from '@angular/material/select';
+import { UpdateCategoryComponent } from './content/categoryManage/update-category/update-category.component';
 
 
 export const appRoutes: Routes = [
@@ -56,6 +57,7 @@ export const appRoutes: Routes = [
     {path: 'create-category', component: CreateCategoryComponent, data: {title: 'Create-Category'}},
     {path: 'page-category', component: PageCategoryComponent, data: {title: 'Page-Category'}},
     {path: 'create-song', component: CreateSongComponent, data: {title: 'Create-Song'}},
+    {path: 'update-category/:id', component: UpdateCategoryComponent, data: {title: 'Update-Category'}},
     {
         path: 'guide/getting-started',
         component: GettingStartedComponent,
@@ -64,7 +66,7 @@ export const appRoutes: Routes = [
 ];
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, ChangeAvatarComponent, CreateCategoryComponent, PageCategoryComponent, CreateSongComponent, PageSongComponent, UploadFileComponent],
+    declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, ChangeAvatarComponent, CreateCategoryComponent, PageCategoryComponent, CreateSongComponent, PageSongComponent, UploadFileComponent, UpdateCategoryComponent],
     imports: [
         HttpClientModule,
         BrowserModule,
@@ -87,6 +89,6 @@ export const appRoutes: Routes = [
     providers: [httpInterceptorProviders],
     bootstrap: [AppComponent]
 })
-export class AppModule {
 
+export class AppModule {
 }

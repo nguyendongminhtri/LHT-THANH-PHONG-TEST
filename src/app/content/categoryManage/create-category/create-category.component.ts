@@ -8,9 +8,9 @@ import {Category} from '../../../model/Category';
   styleUrls: ['./create-category.component.scss']
 })
 export class CreateCategoryComponent implements OnInit {
-  form: any = {};
   status = 'Please fill in the form to create category';
   category: Category;
+  form: any = {}
   error1: any = {
     message: 'no_name_category'
   };
@@ -31,6 +31,7 @@ ngSubmit(){
       this.form.nameCategory,
       this.form.avatarCategory
     )
+
   this.categoryService.createCategory(this.category).subscribe(data =>{
     console.log('data category = ',data);
     if(JSON.stringify(data)==JSON.stringify(this.error1)){
@@ -45,7 +46,8 @@ ngSubmit(){
   })
 }
   onChangeAvatar($event) {
+    console.log('goi ham nay khong');
     this.checkUploadAvatar = true;
-    this.form.avatarCategory = $event;
+    this.category.avatarCategory = $event;
   }
 }
