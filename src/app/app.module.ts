@@ -45,6 +45,9 @@ import { UploadFileComponent } from './upload/upload-file/upload-file.component'
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSelectModule} from '@angular/material/select';
 import { UpdateCategoryComponent } from './content/categoryManage/update-category/update-category.component';
+import { CreateSingerComponent } from './content/singerManage/create-singer/create-singer.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 export const appRoutes: Routes = [
@@ -58,6 +61,7 @@ export const appRoutes: Routes = [
     {path: 'page-category', component: PageCategoryComponent, data: {title: 'Page-Category'}},
     {path: 'create-song', component: CreateSongComponent, data: {title: 'Create-Song'}},
     {path: 'update-category/:id', component: UpdateCategoryComponent, data: {title: 'Update-Category'}},
+    {path: 'create-singer', component: CreateSingerComponent},
     {
         path: 'guide/getting-started',
         component: GettingStartedComponent,
@@ -66,7 +70,7 @@ export const appRoutes: Routes = [
 ];
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, ChangeAvatarComponent, CreateCategoryComponent, PageCategoryComponent, CreateSongComponent, PageSongComponent, UploadFileComponent, UpdateCategoryComponent],
+    declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, ChangeAvatarComponent, CreateCategoryComponent, PageCategoryComponent, CreateSongComponent, PageSongComponent, UploadFileComponent, UpdateCategoryComponent, CreateSingerComponent],
     imports: [
         HttpClientModule,
         BrowserModule,
@@ -81,10 +85,11 @@ export const appRoutes: Routes = [
         MatButtonModule,
         BrowserAnimationsModule,
         NavBarModule, FooterModule,
+        MatNativeDateModule,
         NgxAudioPlayerModule,
         AngularFireStorageModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
-        RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, ReactiveFormsModule, MatProgressSpinnerModule, MatPaginatorModule, Ng2SearchPipeModule, MatProgressBarModule, MatSelectModule
+        RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, ReactiveFormsModule, MatProgressSpinnerModule, MatPaginatorModule, Ng2SearchPipeModule, MatProgressBarModule, MatSelectModule, MatDatepickerModule
     ],
     providers: [httpInterceptorProviders],
     bootstrap: [AppComponent]

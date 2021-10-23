@@ -14,17 +14,29 @@
                         <textarea matInput  name="lyrics" [(ngModel)]="form.lyrics" #lyrics="ngModel" required></textarea>
                         <mat-error *ngIf="lyrics.hasError('required')"> The name Song is required!</mat-error>
                     </mat-form-field><br>
+                    <mat-label>Select Category</mat-label><br>
                     <mat-form-field style="width: 350px" appearance="outline">
-                        <mat-label>Favorite animal</mat-label>
-                        <mat-select [formControl]="animalControl" required [(ngModel)]="form.category">
+                        <mat-label>Category: </mat-label>
+                        <mat-select [formControl]="categoryControl" required [(ngModel)]="form.category">
                             <mat-option *ngFor="let listCTG of listCTGS" [value]="listCTG">
                                 {{listCTG.nameCategory}}
                             </mat-option>
                         </mat-select>
-                        <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>
-                        <mat-hint>{{animalControl.value?.sound}}</mat-hint>
+                        <mat-error *ngIf="categoryControl.hasError('required')">Please choose an animal</mat-error>
+                        <mat-hint>{{categoryControl.value?.id}}</mat-hint>
+                    </mat-form-field><br>
+                    <!--SINGER -->
+                    <mat-label>Select Singer</mat-label><br>
+                    <mat-form-field style="width: 350px" appearance="outline">
+                        <mat-label>Singer: </mat-label>
+                        <mat-select [formControl]="singers" multiple [(ngModel)]="form.singerList">
+                            <mat-option *ngFor="let singer of listSinger" [value]="singer">{{singer.nameSinger}}</mat-option>
+                        </mat-select>
                     </mat-form-field>
+
+                    <mat-error  >Upload Avatar Song: </mat-error>
                     <app-upload-avatar (giveURLtoCreate)="onChangeAvatar($event)"></app-upload-avatar>
+                    <mat-error >Upload File Mp3: </mat-error>
                     <app-upload-file (giveURLtoCreate)="onChangeFileMp3($event)"></app-upload-file>
                     <button mat-stroked-button color="accent" class="mat-button-toggle-group btn-outline-primary">Create Category
                         <mat-icon color="accent" matSuffix>add_circle_outline</mat-icon>

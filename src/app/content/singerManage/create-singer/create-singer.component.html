@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12" style="margin-top: 20px">
+            <!-- NAME SINGER -->
+            <mat-card style="margin: 50px 0">
+                <form class="create-singer" #f="ngForm" (ngSubmit)="f.form.valid &&ngSubmit()" novalidate>
+                    <mat-error class="alert alert-primary">{{status}}</mat-error>
+                    <mat-form-field style="width:350px" appearance="outline">
+                        <mat-label>Name Singer: </mat-label>
+                        <input name="nameSinger" matInput [(ngModel)]="form.nameSinger" #nameSinger="ngModel" required>
+                        <mat-icon color="accent" matSuffix>support_agent</mat-icon>
+                        <mat-error *ngIf="nameSinger.hasError('required')">The name Singer is required!</mat-error>
+                    </mat-form-field><br>
+                    <!-- BIRTH DAY -->
+                    <mat-form-field style="width: 350px ;" appearance="outline">
+                        <mat-label>Choose a date</mat-label>
+                        <input name="birthDay" matInput [matDatepicker]="picker" [(ngModel)]="form.birthDay" #birthDay="ngModel" required>
+                        <mat-datepicker-toggle style="color: #f92672" matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="birthDay.hasError('required')">The birthday is required!</mat-error>
+                    </mat-form-field><br>
+                    <!-- DESCRIPTION -->
+                    <mat-form-field style="width:350px" appearance="outline">
+                        <mat-label>Description: </mat-label>
+                        <textarea name="description" matInput [(ngModel)]="form.description" #description="ngModel" required></textarea>
+                        <mat-icon color="accent" matSuffix>support_agent</mat-icon>
+                        <mat-error *ngIf="description.hasError('required')">The name Singer is required!</mat-error>
+                    </mat-form-field><br>
+                        <app-upload-avatar (giveURLtoCreate)="onChangeAvatar($event)"></app-upload-avatar>
+                    <button mat-stroked-button color="accent" class="mat-button-toggle-group btn-outline-primary">Create Singer
+                        <mat-icon color="accent" matSuffix>support_agent</mat-icon>
+                    </button>
+                </form>
+            </mat-card>
+
+        </div>
+    </div>
+</div>
