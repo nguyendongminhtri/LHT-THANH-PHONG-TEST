@@ -31,7 +31,7 @@ ngSubmit(){
       this.form.nameCategory,
       this.form.avatarCategory
     )
-
+  console.log('this.category == ', this.category);
   this.categoryService.createCategory(this.category).subscribe(data =>{
     console.log('data category = ',data);
     if(JSON.stringify(data)==JSON.stringify(this.error1)){
@@ -48,6 +48,7 @@ ngSubmit(){
   onChangeAvatar($event) {
     console.log('goi ham nay khong');
     this.checkUploadAvatar = true;
-    this.category.avatarCategory = $event;
+    this.form.avatarCategory = $event;
+    console.log('avatar category -->');
   }
 }

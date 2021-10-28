@@ -11,11 +11,12 @@
                         <mat-error *ngIf="nameCategory.hasError('required')">The name category is required!</mat-error>
                     </mat-form-field>
                 <mat-error *ngIf="!checkUploadAvatar">Please upload Avatar</mat-error>
-                <app-upload-avatar (giveURLtoCreate)="onChangeAvatar($event)"></app-upload-avatar><br>
+                <app-upload-avatar (giveURLtoCreate)="onChangeAvatar($event)"></app-upload-avatar>
                 <button mat-stroked-button color="accent" class="mat-button-toggle-group btn-outline-primary">Create Category
                     <mat-icon color="accent" matSuffix>add_circle_outline</mat-icon>
                 </button>
             </form>
+
             </mat-card>
 
         </div>
