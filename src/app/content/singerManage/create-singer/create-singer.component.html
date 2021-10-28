@@ -26,11 +26,11 @@
                         <mat-icon color="accent" matSuffix>support_agent</mat-icon>
                         <mat-error *ngIf="description.hasError('required')">The name Singer is required!</mat-error>
                     </mat-form-field><br>
-                        <app-upload-avatar (giveURLtoCreate)="onChangeAvatar($event)"></app-upload-avatar>
                     <button mat-stroked-button color="accent" class="mat-button-toggle-group btn-outline-primary">Create Singer
                         <mat-icon color="accent" matSuffix>support_agent</mat-icon>
                     </button>
                 </form>
+                <app-upload-avatar (giveURLtoCreate)="onChangeAvatar($event)"></app-upload-avatar>
             </mat-card>
 
         </div>
