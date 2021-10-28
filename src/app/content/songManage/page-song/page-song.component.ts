@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Category} from '../../../model/Category';
 import {PageEvent} from '@angular/material/paginator';
 import {SongService} from '../../../service/song.service';
+import {Song} from '../../../model/Song';
 
 @Component({
   selector: 'app-page-song',
@@ -10,7 +11,7 @@ import {SongService} from '../../../service/song.service';
 })
 export class PageSongComponent implements OnInit {
   totalElements: number = 0;
-  categorys: Category[];
+  songs: Song[];
   // loading: boolean;
   searchText;
   constructor(private songService: SongService) { }
@@ -21,7 +22,7 @@ export class PageSongComponent implements OnInit {
     // this.loading = true;
     this.songService.pageSong(nextPage)
       .subscribe(data => {
-          this.categorys = data['content'];
+          this.songs = data['content'];
           console.log('category', data);
           this.totalElements = data['totalElements'];
           // this.loading = false;
