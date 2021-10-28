@@ -62,6 +62,7 @@ export const appRoutes: Routes = [
     {path: 'page-category', component: PageCategoryComponent, data: {title: 'Page-Category'}},
     {path: 'create-song', component: CreateSongComponent, data: {title: 'Create-Song'}},
     {path: 'create-band', component: CreateBandComponent},
+    {path: 'page-song', component: PageSongComponent},
     {path: 'update-category/:id', component: UpdateCategoryComponent, data: {title: 'Update-Category'}},
     {path: 'create-singer', component: CreateSingerComponent},
     {

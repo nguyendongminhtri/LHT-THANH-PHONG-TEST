@@ -16,4 +16,8 @@ export class SongService {
   createSong(song: Song): Observable<Song>{
     return this.http.post<Song>(this.API_SONG, song);
   }
+  pageSong(nextPage){
+    const params = nextPage;
+    return this.http.get(this.API_SONG, {params})
+  }
 }
