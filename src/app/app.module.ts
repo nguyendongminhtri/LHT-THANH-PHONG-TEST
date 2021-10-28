@@ -48,6 +48,7 @@ import { UpdateCategoryComponent } from './content/categoryManage/update-categor
 import { CreateSingerComponent } from './content/singerManage/create-singer/create-singer.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { CreateBandComponent } from './content/bandManage/create-band/create-band.component';
 
 
 export const appRoutes: Routes = [
@@ -60,6 +61,7 @@ export const appRoutes: Routes = [
     {path: 'create-category', component: CreateCategoryComponent, data: {title: 'Create-Category'}},
     {path: 'page-category', component: PageCategoryComponent, data: {title: 'Page-Category'}},
     {path: 'create-song', component: CreateSongComponent, data: {title: 'Create-Song'}},
+    {path: 'create-band', component: CreateBandComponent},
     {path: 'update-category/:id', component: UpdateCategoryComponent, data: {title: 'Update-Category'}},
     {path: 'create-singer', component: CreateSingerComponent},
     {
@@ -70,7 +72,7 @@ export const appRoutes: Routes = [
 ];
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, ChangeAvatarComponent, CreateCategoryComponent, PageCategoryComponent, CreateSongComponent, PageSongComponent, UploadFileComponent, UpdateCategoryComponent, CreateSingerComponent],
+    declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, ChangePasswordComponent, UploadAvatarComponent, ChangeAvatarComponent, CreateCategoryComponent, PageCategoryComponent, CreateSongComponent, PageSongComponent, UploadFileComponent, UpdateCategoryComponent, CreateSingerComponent, CreateBandComponent],
     imports: [
         HttpClientModule,
         BrowserModule,

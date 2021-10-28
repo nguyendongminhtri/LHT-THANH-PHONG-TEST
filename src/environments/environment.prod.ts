@@ -1,6 +1,6 @@
 export const environment = {
   API_LOCAL: 'http://localhost:8080/',
-  API_SERVER: 'https://phongspringbe.herokuapp.com/',
+  API_SERVER: 'https://thanh-phong-test.herokuapp.com/',
   production: true,
   firebaseConfig: {
     apiKey: 'AIzaSyBOxk8Jx4y6CqYFo8YpyPTPbDDDn9cp71c',

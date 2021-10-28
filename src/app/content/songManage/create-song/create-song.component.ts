@@ -6,6 +6,8 @@ import {Song} from '../../../model/Song';
 import {SongService} from '../../../service/song.service';
 import {SingerService} from '../../../service/singer-service/singer.service';
 import {Singer} from '../../../model/Singer';
+import {Band} from '../../../model/Band';
+import {BandService} from '../../../service/band-service/band.service';
 
 @Component({
   selector: 'app-create-song',
@@ -16,6 +18,7 @@ import {Singer} from '../../../model/Singer';
 export class CreateSongComponent implements OnInit {
   //TEST SINGER
   singers = new FormControl();
+  bands = new FormControl();
   // toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
   form: any = {}
@@ -23,6 +26,7 @@ export class CreateSongComponent implements OnInit {
   // selectFormControl = new FormControl('', Validators.required);
   listCTGS: Category[] = [];
   listSinger: Singer[] = [];
+  listBand: Band[] = [];
   song: Song;
   success: any = {
     message: "yes"
@@ -36,10 +40,14 @@ export class CreateSongComponent implements OnInit {
   error2: any = {
     message: "no_mp3Url"
   }
+  error4: any = {
+    message: "no_singer_band"
+  }
   status = 'Please fill in the form to create Song'
   constructor(private categoryService: CategoryService,
               private songService: SongService,
-              private singerService: SingerService) { }
+              private singerService: SingerService,
+              private bandService: BandService) { }
 
   ngOnInit(): void {
      this.categoryService.getListCategory().subscribe(listCTG =>{
@@ -50,16 +58,20 @@ export class CreateSongComponent implements OnInit {
       this.listSinger = listSinger;
       console.log('listSinger =>', this.listSinger);
     })
+    this.bandService.getListBand().subscribe(listBand =>{
+      this.listBand = listBand;
+    })
   }
   onSubmit(){
-    console.log('this.form.category == ', this.form.category);
+    console.log('this.form.bandList == ', this.form.bandList);
     this.song = new Song(
       this.form.nameSong,
       this.form.lyrics,
       this.form.avatarSong,
       this.form.mp3Url,
       this.form.category,
-      this.form.singerList
+      this.form.singerList,
+      this.form.bandList
     )
     this.songService.createSong(this.song).subscribe(data =>{
       console.log('data === ',data);
@@ -71,6 +83,9 @@ export class CreateSongComponent implements OnInit {
       }
       if(JSON.stringify(data)==JSON.stringify(this.error3)){
         this.status = 'Please select Category';
+      }
+      if(JSON.stringify(data)==JSON.stringify(this.error4)){
+        this.status = 'Please select Singer or Band';
       }
       if(JSON.stringify(data)==JSON.stringify(this.success)){
         this.status = 'Create Song success!'

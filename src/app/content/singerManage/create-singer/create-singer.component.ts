@@ -34,4 +34,5 @@ export class CreateSingerComponent implements OnInit {
   onChangeAvatar($event){
     this.form.avatarSinger = $event;
   }
+
 }
