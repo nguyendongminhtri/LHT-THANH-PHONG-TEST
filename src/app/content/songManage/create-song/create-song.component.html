@@ -29,25 +29,26 @@
                     <mat-label>Select Singer</mat-label><br>
                     <mat-form-field style="width: 350px" appearance="outline">
                         <mat-label>Singer: </mat-label>
-                        <mat-select multiple [(ngModel)]="form.singerList" [ngModelOptions]="{standalone: true}">
+                        <mat-select multiple [(ngModel)]="form.singerList" name="singerList">
                             <mat-option *ngFor="let singer of listSinger" [value]="singer">{{singer.nameSinger}}</mat-option>
                         </mat-select>
                     </mat-form-field><br>
                     <mat-label>Select Band</mat-label><br>
                     <mat-form-field style="width: 350px" appearance="outline">
                         <mat-label>Band: </mat-label>
-                        <mat-select  multiple [(ngModel)]="form.bandList" [ngModelOptions]="{standalone: true}">
+                        <mat-select  multiple [(ngModel)]="form.bandList" name="bandList">
                             <mat-option *ngFor="let band of listBand" [value]="band">{{band.nameBand}}</mat-option>
                         </mat-select>
-                    </mat-form-field>
+                    </mat-form-field><br>
+                    <mat-error  >Upload Avatar Song: </mat-error>
+                    <app-upload-avatar (giveURLtoCreate)="onChangeAvatar($event)"></app-upload-avatar>
+                    <mat-error >Upload File Mp3: </mat-error>
+                    <app-upload-file (giveURLtoCreate)="onChangeFileMp3($event)"></app-upload-file>
                     <button mat-stroked-button color="accent" class="mat-button-toggle-group btn-outline-primary">Create Category
                         <mat-icon color="accent" matSuffix>add_circle_outline</mat-icon>
                     </button>
                 </form>
-                <mat-error  >Upload Avatar Song: </mat-error>
-                <app-upload-avatar (giveURLtoCreate)="onChangeAvatar($event)"></app-upload-avatar>
-                <mat-error >Upload File Mp3: </mat-error>
-                <app-upload-file (giveURLtoCreate)="onChangeFileMp3($event)"></app-upload-file>
+
             </mat-card>
         </div>
     </div>

@@ -1,30 +1,53 @@
-import { Component, ViewChild } from '@angular/core';
-import { Track } from 'projects/ngx-audio-player/src/public_api';
-import { AudioPlayerComponent } from 'projects/ngx-audio-player/src/public_api';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {AudioPlayerComponent} from '../../../../../projects/ngx-audio-player/src/lib/component/ngx-audio-player/ngx-audio-player.component';
+import {Track} from '../../../../../projects/ngx-audio-player/src/lib/model/track.model';
+import {Song} from '../../../model/Song';
+import {SongService} from '../../../service/song-service/song.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-detail-song',
+  templateUrl: './detail-song.component.html',
+  styleUrls: ['./detail-song.component.scss']
 })
-export class HomeComponent {
+export class DetailSongComponent implements OnInit {
+  song: Song;
+  singerTrack: Track[] = []
+  constructor(private atvRoute: ActivatedRoute,
+              private songService: SongService) { }
 
-  constructor() { }
+  ngOnInit(): void {
+    this.atvRoute.paramMap.subscribe(songId =>{
+      const id = +songId.get('id');
+      this.songService.detailSong(id).subscribe(songId =>{
+        this.song = songId;
+        console.log('songId = ', this.song);
+        this.singerTrack = [
+          {
+            title: this.song.lyrics,
+            link: this.song.mp3Url,
+            duration: 227,
+          }
+        ];
+      })
+    })
+  }
   private fmaBaseUrl = 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music';
 
   @ViewChild('player', { static: false })
   advancedPlayer: AudioPlayerComponent;
 
   // Single
-  singleTrack: Track[] = [
-    {
-      title: 'In Love',
-      link:
-        'https://dl.dropboxusercontent.com/s/9v0psowra7ekhxo/A%20Himitsu%20-%20In%20Love%20%28feat.%20Nori%29.flac?dl=0',
-      duration: 227,
-      artist: 'A Himitsu feat. Nori'
-    }
-  ];
+
+  // singleTrack: Track[] = [
+  //   {
+  //     title: '',
+  //     link:
+  //       '',
+  //     duration: 227,
+  //     artist: 'A Himitsu feat. Nori'
+  //   }
+  // ];
 
   // Multiple
   multiple: Track[] = [
@@ -48,7 +71,7 @@ export class HomeComponent {
 
   msaapDisplayTitle = true;
   msaapDisplayPlayList = true;
-  pageSizeOptions = [2, 4, 6];
+  pageSizeOptions = [1];
 
   msaapDisplayVolumeControls = true;
   msaapDisplayRepeatControls = true;
@@ -101,14 +124,13 @@ export class HomeComponent {
   counter = 1;
 
   onEnded(event) {
-    console.log('goi ham eded ===> ');
     console.log(event);
     // your logic which needs to
     // be triggered once the
     // track ends goes here.
-  // this.setSingleTrack();
+
     // example
-    // this.currentTrack = null;
+    this.currentTrack = null;
   }
 
   logCurrentTrack() {
@@ -124,16 +146,15 @@ export class HomeComponent {
   }
 
   consoleLogCurrentData() {
-    // logCurrentTrack();
-    // logCurrentTime();
+    this.logCurrentTrack();
+    this.logCurrentTime();
     // Make sure to subscribe (by calling above methods)
     // before getting the data
     console.log(this.currentTrack.title + ' : ' + this.currentTime);
   }
 
   appendTracksToPlaylist() {
-    console.log('goi ham nay khong?');
-    console.log('app tai Trachk --> ', this.msaapPlaylist);
+
     if (this.msaapPlaylist.length === 1) {
       this.msaapPlaylist = this.multiple;
     } else if (this.msaapPlaylist.length === 2) {
@@ -151,8 +172,7 @@ export class HomeComponent {
   }
 
   setSingleTrack() {
-    this.msaapPlaylist = this.singleTrack;
-    console.log('msaapPlayList == ', this.msaapPlaylist);
+    this.msaapPlaylist = this.singerTrack;
     this.appendTracksToPlaylistDisable = false;
   }
 
@@ -170,6 +190,7 @@ export class HomeComponent {
 
   changeMsaapDisplayRepeatControls(event) {
     this.msaapDisplayRepeatControls = event.checked;
+    console.log('check --> ', this.msaapDisplayRepeatControls);
   }
 
   changeMsaapDisplayArtist(event) {
@@ -182,9 +203,5 @@ export class HomeComponent {
 
   changeMsaapDisablePositionSlider(event) {
     this.msaapDisablePositionSlider = event.checked;
-  }
-  // End: Required for demo purpose
-  uploadAvatar($event){
-    console.log('avatar ==> ', $event);
   }
 }

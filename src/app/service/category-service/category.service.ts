@@ -9,10 +9,10 @@ import {Observable} from 'rxjs';
 })
 export class CategoryService {
   //API LOCAL
-  // private API_CATEGORY = environment.API_LOCAL+'category';
+  private API_CATEGORY = environment.API_LOCAL+'category';
 
   //API SERVER
-  private API_CATEGORY = environment.API_SERVER+'category';
+  // private API_CATEGORY = environment.API_SERVER+'category';
   constructor(private http: HttpClient) { }
   createCategory(category: Category): Observable<Category>{
     return this.http.post<Category>(this.API_CATEGORY, category);

@@ -3,7 +3,7 @@ import {FormControl, Validators} from '@angular/forms';
 import {Category} from '../../../model/Category';
 import {CategoryService} from '../../../service/category-service/category.service';
 import {Song} from '../../../model/Song';
-import {SongService} from '../../../service/song.service';
+import {SongService} from '../../../service/song-service/song.service';
 import {SingerService} from '../../../service/singer-service/singer.service';
 import {Singer} from '../../../model/Singer';
 import {Band} from '../../../model/Band';
@@ -50,16 +50,18 @@ export class CreateSongComponent implements OnInit {
               private bandService: BandService) { }
 
   ngOnInit(): void {
-     this.categoryService.getListCategory().subscribe(listCTG =>{
-       this.listCTGS = listCTG;
-       console.log('listCTG -> ',this.listCTGS);
-     })
     this.singerService.listSinger().subscribe(listSinger=>{
       this.listSinger = listSinger;
       console.log('listSinger =>', this.listSinger);
     })
+     this.categoryService.getListCategory().subscribe(listCTG =>{
+       this.listCTGS = listCTG;
+       console.log('listCTG -> ',this.listCTGS);
+     })
+
     this.bandService.getListBand().subscribe(listBand =>{
       this.listBand = listBand;
+      console.log('listBand', this.listBand);
     })
   }
   onSubmit(){
@@ -73,6 +75,7 @@ export class CreateSongComponent implements OnInit {
       this.form.singerList,
       this.form.bandList
     )
+    console.log('this.song => ', this.song);
     this.songService.createSong(this.song).subscribe(data =>{
       console.log('data === ',data);
       if(JSON.stringify(data)==JSON.stringify(this.error1)){
@@ -95,6 +98,7 @@ export class CreateSongComponent implements OnInit {
   }
   onChangeAvatar($event){
     this.form.avatarSong = $event;
+    console.log('this.form.avatarSong === ', this.form.avatarSong);
   }
   onChangeFileMp3($event){
     this.form.mp3Url = $event;

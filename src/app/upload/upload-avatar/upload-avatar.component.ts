@@ -7,6 +7,8 @@ import {AngularFireStorage, AngularFireStorageReference} from '@angular/fire/sto
 })
 export class UploadAvatarComponent implements OnInit {
   selectedFile: File;
+  listIMG: Array<string> = [];
+  myMap = new Map();
   ref: AngularFireStorageReference;
   downloadURL: string;
   checkUploadAvatar = false;
@@ -20,6 +22,9 @@ export class UploadAvatarComponent implements OnInit {
   //trong $event.target.files
   onFileChaged($event){
     this.selectedFile = $event.target.files[0];
+    this.onUpLoad()
+
+
   }
   onUpLoad(){
     this.checkUploadAvatar = true;
@@ -33,6 +38,12 @@ export class UploadAvatarComponent implements OnInit {
         this.downloadURL = downloadURL;
         this.giveURLtoCreate.emit(this.downloadURL);
         this.checkUploadAvatar = false;
+        this.listIMG.push(downloadURL)
+        console.log('LIST ==> ', this.listIMG);
+        for(let i=0; i<this.listIMG.length;i++){
+       this.myMap.set(i,this.listIMG[i])
+        }
+        console.log('map ---> ',this.myMap);
         return downloadURL;
       })
       .catch(error=>{

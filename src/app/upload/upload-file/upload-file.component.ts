@@ -20,6 +20,7 @@ export class UploadFileComponent implements OnInit {
   }
   onFileChaged($event){
     this.selectedFile = $event.target.files[0];
+    this.onUpLoad()
   }
   onUpLoad(){
     this.checkUploadFile = true;

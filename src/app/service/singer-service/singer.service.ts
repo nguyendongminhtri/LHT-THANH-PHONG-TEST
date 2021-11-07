@@ -9,9 +9,9 @@ import {Observable} from 'rxjs';
 })
 export class SingerService {
 //API LOCAL
-//   private API_SINGER = environment.API_LOCAL+'singer';
+  private API_SINGER = environment.API_LOCAL+'singer';
   //API SERVER
-  private API_SINGER = environment.API_SERVER+'singer';
+  // private API_SINGER = environment.API_SERVER+'singer';
   constructor(private http: HttpClient) { }
   createSinger(singer: Singer): Observable<Singer>{
     console.log('goi service singer');
