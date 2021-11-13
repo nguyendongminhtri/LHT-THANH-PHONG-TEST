@@ -6,17 +6,28 @@
                     <div class="row">
                         <div class="col-12"
                              style="margin: 50px 0; border: 2px solid #BBBBBB; padding: 50px; border-radius: 5px">
-                            <b style="color: #f92672">Name Song: <i style="color: #003bfe"> {{song.nameSong}}</i>
+                            <b style="color: #f92672">Name Song: <i style="color: #003bfe"> {{songDetail.song.nameSong}}</i>
                             </b><br>
 
                             <b style="color: #f92672">Singer:
-                                    <i *ngFor="let si of song.singerList; let a = index" style="color: #003bfe"><i *ngIf="a>0">-&nbsp;</i>{{si.nameSinger}} </i>
+                                    <i *ngFor="let si of songDetail.song.singerList; let a = index" style="color: #003bfe"><i *ngIf="a>0">-&nbsp;</i>{{si.nameSinger}} </i>
                             </b><br>
-                            <b style="color: #f92672">Band:
-                                <i *ngFor="let band of song.bandList; let a = index" style="color: #003bfe"><i *ngIf="a>0">-&nbsp;</i>{{band.nameBand}} </i>
+                            <b style="color: #f92672" *ngFor="let band of songDetail.song.bandList; let a = index">Band:
+                                <i  style="color: #003bfe"><i *ngIf="a>0">-&nbsp;</i>{{band.nameBand}} </i>
                             </b>
-                            <img class="img" [src]="song.avatarSong">
+                            <img class="img" [src]="songDetail.song.avatarSong">
 
+<!--                                <button [ngClass]="{'test': newColor}" (click)="toggleColor()" mat-fab>-->
+<!--                                    <mat-icon color="accent" matSuffix>heart</mat-icon>-->
+<!--                                </button>-->
+<!--                                <button mat-icon-button [ngClass]="{'test': newColor}" (click)="toggleColor()" >-->
+<!--                                    <mat-icon  [ngClass]="{'test': newColor}" >favorite</mat-icon>-->
+<!--                                </button>-->
+
+                            <button mat-fab  [ngClass]="{'test': newColor}" (click)="toggleColor()">{{songDetail.song.likeSong}}
+                                <mat-icon *ngIf="!newColor" color="primary">favorite</mat-icon>
+                                <mat-icon *ngIf="newColor" color="accent">favorite</mat-icon>
+                            </button>
                             <div class="row justify-contents-around">
                                 <div class="col py-3 pl-3">
                                     <div class="col">

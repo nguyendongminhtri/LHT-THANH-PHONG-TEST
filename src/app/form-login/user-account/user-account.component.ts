@@ -12,4 +12,8 @@ export class UserAccountComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  logOut() {
+    window.sessionStorage.clear();
+    window.location.reload();
+  }
 }

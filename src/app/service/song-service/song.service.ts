@@ -3,6 +3,8 @@ import {environment} from '../../../environments/environment.prod';
 import {HttpClient} from '@angular/common/http';
 import {Song} from '../../model/Song';
 import {Observable} from 'rxjs';
+import {SongDetail} from '../../model/SongDetail';
+import {LikeSong} from '../../model/LikeSong';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +24,10 @@ export class SongService {
     const params = nextPage;
     return this.http.get(this.API_SONG, {params})
   }
-  detailSong(id: number): Observable<Song>{
-    return this.http.get<Song>(this.API_SONG+'/'+id)
+  detailSong(id: number): Observable<SongDetail>{
+    return this.http.get<SongDetail>(this.API_SONG+'/'+id)
+  }
+  likeSong(id: number){
+    return this.http.get(this.API_SONG+'/like/'+id );
   }
 }

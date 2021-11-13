@@ -4,6 +4,8 @@ import {AudioPlayerComponent} from '../../../../../projects/ngx-audio-player/src
 import {Track} from '../../../../../projects/ngx-audio-player/src/lib/model/track.model';
 import {Song} from '../../../model/Song';
 import {SongService} from '../../../service/song-service/song.service';
+import {SongDetail} from '../../../model/SongDetail';
+import {LikeSong} from '../../../model/LikeSong';
 
 @Component({
   selector: 'app-detail-song',
@@ -11,30 +13,43 @@ import {SongService} from '../../../service/song-service/song.service';
   styleUrls: ['./detail-song.component.scss']
 })
 export class DetailSongComponent implements OnInit {
-  song: Song;
-  singerTrack: Track[] = []
+  songDetail: SongDetail;
+  singerTrack: Track[] = [];
+  newColor = false;
+  id_song: number;
+
+  likeSong: LikeSong;
+
   constructor(private atvRoute: ActivatedRoute,
-              private songService: SongService) { }
+              private songService: SongService) {
+  }
 
   ngOnInit(): void {
-    this.atvRoute.paramMap.subscribe(songId =>{
+    this.atvRoute.paramMap.subscribe(songId => {
       const id = +songId.get('id');
-      this.songService.detailSong(id).subscribe(songId =>{
-        this.song = songId;
-        console.log('songId = ', this.song);
+      this.id_song = id;
+      this.songService.detailSong(id).subscribe(songId => {
+        this.songDetail = songId;
+        // this.likeSong.song = this.songDetail.song;
+        // this.likeSong.songId.song;
+        if (this.songDetail.checkLikeSong) {
+          this.newColor = true;
+        }
+        console.log('songId = ', this.songDetail.song);
         this.singerTrack = [
           {
-            title: this.song.lyrics,
-            link: this.song.mp3Url,
+            title: this.songDetail.song.lyrics,
+            link: this.songDetail.song.mp3Url,
             duration: 227,
           }
         ];
-      })
-    })
+      });
+    });
   }
+
   private fmaBaseUrl = 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music';
 
-  @ViewChild('player', { static: false })
+  @ViewChild('player', {static: false})
   advancedPlayer: AudioPlayerComponent;
 
   // Single
@@ -203,5 +218,34 @@ export class DetailSongComponent implements OnInit {
 
   changeMsaapDisablePositionSlider(event) {
     this.msaapDisablePositionSlider = event.checked;
+  }
+
+  toggleColor() {
+    console.log('click');
+    this.newColor = !this.newColor;
+    console.log('song duoi ', this.songDetail.song);
+    this.likeSong = new LikeSong(
+      this.songDetail.song
+    );
+    console.log('like song -> ', this.likeSong);
+    this.songService.likeSong(this.id_song).subscribe(data => {
+      console.log('data like --> ', data);
+      this.songService.detailSong(this.id_song).subscribe(songId => {
+        this.songDetail = songId;
+        // this.likeSong.song = this.songDetail.song;
+        // this.likeSong.songId.song;
+        if (this.songDetail.checkLikeSong) {
+          this.newColor = true;
+        }
+        console.log('songId = ', this.songDetail.song);
+        // this.singerTrack = [
+        //   {
+        //     title: this.songDetail.song.lyrics,
+        //     link: this.songDetail.song.mp3Url,
+        //     duration: 227,
+        //   }
+        // ];
+      });
+    });
   }
 }
