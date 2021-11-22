@@ -9,9 +9,9 @@ import {Observable} from 'rxjs';
 })
 export class BandService {
 //API LOCAL
-  private API_BAND = environment.API_LOCAL+'band';
+//   private API_BAND = environment.API_LOCAL+'band';
   //API SERVER
-  // private API_BAND = environment.API_SERVER+'band';
+  private API_BAND = environment.API_SERVER+'band';
   constructor(private http: HttpClient) { }
   createBand(band: Band): Observable<Band>{
     return this.http.post<Band>(this.API_BAND, band);
