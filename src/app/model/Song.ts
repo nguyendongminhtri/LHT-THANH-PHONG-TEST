@@ -11,12 +11,11 @@ export class Song {
   public category: Category;
   public singerList: Singer[] = [];
   public bandList: Band[] = [];
-  constructor(nameSong: string, lyrics: string, avatarSong: string, mp3Url: string, likeSong: number, category: Category, singerList: Singer[], bandList: Band[]) {
+  constructor(nameSong: string, lyrics: string, avatarSong: string, mp3Url: string, category: Category, singerList: Singer[], bandList: Band[]) {
     this.nameSong = nameSong;
     this.lyrics = lyrics;
     this.avatarSong = avatarSong;
     this.mp3Url = mp3Url;
-    this.likeSong = likeSong;
     this.category = category;
     this.singerList = singerList;
     this.bandList = bandList;
